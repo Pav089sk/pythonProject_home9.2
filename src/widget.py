@@ -27,7 +27,7 @@ print(mask_account_card("Счет 73654108430135874305"))
 
 def get_date(date_string: str) -> str:
     """функция форматирования типа строки даты"""
-    return f"{date_string[8:10]}-{date_string[5:7]}-{date_string[:4]}"
+    return f"{date_string[8:10]}.{date_string[5:7]}.{date_string[:4]}"
 
 
 print(get_date("2024-03-11T02:26:18.671407"))
