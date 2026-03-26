@@ -22,3 +22,6 @@ def test_get_mask_account_outsize():
 
 def test_get_mask_account_resize():
     assert get_mask_account(7365410843013587) == 'Неверный номер счета'
+
+def test_get_mask_account_empty():
+    assert get_mask_account('') == 'Неверный номер счета'

@@ -7,3 +7,9 @@ def card_num():
 @pytest.fixture()
 def invoice_num():
     return '**4305'
+
+@pytest.fixture()
+def mask_account():
+    return 'Maestro 1596 83** **** 5199'
+
+
