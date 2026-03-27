@@ -1,3 +1,4 @@
+import pytest
 from src.widget import mask_account_card
 from src.widget import get_date
 
@@ -9,6 +10,10 @@ def test_mask_account_invoice():
 
 def test_mask_account_2():
     assert mask_account_card('MasterCard 7158300734726758') == 'MasterCard 7158 30** **** 6758'
+
+@pytest.mark.parametrize("number, result", [("Visa Platinum 8990922113665229", "Visa Platinum 8990 92** **** 5229")])
+def test_correct_account(number: str, result: str) -> None:
+    assert mask_account_card(number) == result
 
 def test_mask_account_empty():
     assert mask_account_card('') == 'Информация отсутствует'

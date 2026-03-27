@@ -1,3 +1,4 @@
+import pytest
 from src.masks import get_mask_card_number
 from src.masks import get_mask_account
 
@@ -7,6 +8,10 @@ def test_mask_card_num(card_num):
 
 def test_mask_account(invoice_num):
     assert get_mask_account(73654108430135874305) == invoice_num
+
+@pytest.mark.parametrize("number, result", [("12345678901234567890", "**7890"), (12345678901234567890, "**7890")])
+def test_correct_mask_account(number: str | int, result: str) -> None:
+    assert get_mask_account(number) == result
 
 def test_mask_card_num_outsize():
     assert get_mask_card_number(1237000792289606361) == 'Неверный номер карты'
