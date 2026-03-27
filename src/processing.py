@@ -17,7 +17,7 @@ def filter_by_state(list_dictionary: list, state: str = "EXECUTED") -> list:
 def sort_by_date(list_dict: list, direction: bool = True) -> list:
     """Функция возвращает новый список, отсортированный по дате"""
     for operation in list_dict:
-       if len(operation['date']) < 26:
-         return "Некорректный формат даты"
+        if len(operation["date"]) < 26:
+            return "Некорректный формат даты"
 
     return sorted(list_dict, key=lambda i: i.get("date"), reverse=direction)
