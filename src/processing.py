@@ -1,5 +1,3 @@
-from mypy.server.update import sort_messages_preserving_file_order
-
 
 def filter_by_state(list_dictionary: list, state: str = "EXECUTED") -> list:
     """Функция возвращает новый список словарей,
