@@ -18,7 +18,43 @@
 ```filter_by_state```
 6. Функция сортировки операций по дате
 ```sort_by_date```
+Выполнено задание по теме включения и генераторы
+По заданию создан модуль processing.py.
+В модуль добавлены новые функции:
+```filter_by_currency```, которая принимает на вход список словарей, представляющих транзакции.
+Функция возвращает итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной.
+Добавлен генератор ```transaction_descriptions```, который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди.
+Пример: ```descriptions = transaction_descriptions(transactions)```
+```for _ in range(5):```
+    ```print(next(descriptions))```
+
+```>>> Перевод организации```
+    ```Перевод со счета на счет```
+    ```Перевод со счета на счет```
+    ```Перевод с карты на карту```
+    ```Перевод организации```
+Создан генератор ```card_number_generator```, который выдает номера банковских карт в формате  XXXX XXXX XXXX XXXX, где 
+X — цифра номера карты. Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999.
+Генератор принимает начальное и конечное значения для генерации диапазона номеров.
 ## Тестирования 
 Тесты выполненны для функций с применением фикстур и параметризации.
-Согласно Coverage report,проект покрыт тестами на 100%, для тестирования используется pytest. 
-Для запуска тестов выполните команду pytest через терминал в корневой папке проекта.
+Согласно Coverage report,проект покрыт тестами на 95%, для тестирования используется pytest. 
+Для запуска тестов выполните команду ```pytest``` через терминал в корневой папке проекта.
+### Итоги тестирования после добавления новых функций в модуль processing.py
+File	function	 	statements	missing	excluded	 	coverage
+src / generators.py	transaction_descriptions	 	8	3	0	 	62%
+src / __init__.py	(no function)	 	0	0	0	 	100%
+src / generators.py	filter_by_currency	 	7	0	0	 	100%
+src / generators.py	card_number_generator	 	3	0	0	 	100%
+src / generators.py	(no function)	 	4	0	0	 	100%
+src / masks.py	get_mask_card_number	 	5	0	0	 	100%
+src / masks.py	get_mask_account	 	5	0	0	 	100%
+src / masks.py	(no function)	 	2	0	0	 	100%
+src / processing.py	filter_by_state	 	5	0	0	 	100%
+src / processing.py	sort_by_date	 	4	0	0	 	100%
+src / processing.py	(no function)	 	2	0	0	 	100%
+src / widget.py	mask_account_card	 	9	0	0	 	100%
+src / widget.py	get_date	 	3	0	0	 	100%
+src / widget.py	(no function)	 	3	0	0	 	100%
+Total	 	 	60	3	0	 	95%
+coverage.py v7.13.5, created at 2026-04-01 16:57 +0300
