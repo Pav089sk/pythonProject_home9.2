@@ -30,7 +30,7 @@ transactions =  [
 ]
 def filter_by_currency(transactions: list[dict], currency: str) -> list[dict]:
     """ Функция возвращает транзакции в которых валюта соответствует заданной"""
-    found = False  # Флаг для отслеживания транзакций
+    found = False
     for transaction in transactions:
         if (transaction and
                 transaction.get("operationAmount", {}).get("currency", {}).get("name") == currency):
@@ -58,6 +58,3 @@ def card_number_generator(start: int, stop: int) -> str:
         card_num = str(num).zfill(16)
         yield f'{card_num[:4]} {card_num[5:9]} {card_num[8:12]} {card_num[12:]}'
 
-for card_number in card_number_generator(1, 5):
-
-    print(card_number)
