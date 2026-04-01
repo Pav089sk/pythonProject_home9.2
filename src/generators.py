@@ -40,13 +40,13 @@ def filter_by_currency(transactions: list[dict], currency: str) -> list[dict]:
     if not found:
         yield "Нет транзакции"  #  Строка, если ничего не найдено
 
-def transaction_descriptions(transactions: list(dict)) -> str:
+def transaction_descriptions(transactions: list[dict]) -> str:
     for transaction in transactions:
         if not transaction:
             yield 'Отсутствует транзакция' #проверка пустой транзакции
             continue
         description = transaction.get("description")
-        yield description if description else ('Отсутствует описание')
+        yield description if description else 'Отсутствует описание'
 
     if not transactions: #проверка пустого списка
         yield "Транзакции отсутствуют"
@@ -55,7 +55,8 @@ def transaction_descriptions(transactions: list(dict)) -> str:
 def card_number_generator(start: int, stop: int) -> str:
     """генератор выдаёт номера карт в формате XXXX XXXX XXXX XXXX"""
     for num in range(start, stop + 1):
-        yield (f'{num}'[:4] + " " + f'{num}'[5:8] + " " + f'{num}'[9:12] + " " + f'{num}'[12:])
+        card_num = str(num).zfill(16)
+        yield f'{card_num[:4]} {card_num[5:9]} {card_num[8:12]} {card_num[12:]}'
 
 for card_number in card_number_generator(1, 5):
 
