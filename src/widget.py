@@ -29,4 +29,3 @@ def get_date(date_string: str) -> str:
         return ""
 
     return f"{date_string[8:10]}.{date_string[5:7]}.{date_string[:4]}"
-
