@@ -55,7 +55,7 @@ def transaction_descriptions(transactions: list(dict)) -> str:
 def card_number_generator(start: int, stop: int) -> str:
     """генератор выдаёт номера карт в формате XXXX XXXX XXXX XXXX"""
     for num in range(start, stop + 1):
-        yield (f'{num}'[:4] + " " + f'{num}'[5:8] + " " + f'{num}'[9:12] + " " + f'{num}'[13:16])
+        yield (f'{num}'[:4] + " " + f'{num}'[5:8] + " " + f'{num}'[9:12] + " " + f'{num}'[12:])
 
 for card_number in card_number_generator(1, 5):
 
