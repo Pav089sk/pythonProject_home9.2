@@ -6,26 +6,27 @@ def log(filename):
         @wraps(func)
         def inner(*args, **kwargs):
             try:
+              result = func(*args, **kwargs)
               if filename is not None:
                   with open ('mylog.txt', 'a') as file:
                       file.write(f'{func.__name__}, "ok"')
               else:
                   print(f'{func.__name__}, "ok"')
+              return result
             except TypeError as a:
                 if filename is not None:
                     with open('mylog.txt', 'a') as file:
-                        file.write(f'{func.__name__},"type error" {a}, Inputs: {args}, {kwargs}')
+                        file.write(f'{func.__name__},"TypeError" {a}, Inputs: {args}, {kwargs}')
                 else:
-                    print(f'{func.__name__}, {a}, "type error" {a}, Inputs: {args}, {kwargs}')
-            result = func(*args, **kwargs)
-            return result
+                    print(f'{func.__name__}, "TypeError" {a}, Inputs: {args}, {kwargs}')
+                raise a
         return inner
     return wrapper
 
 
 
-@log(filename=None)
+@log(filename='mylog.txt')
 def my_function(x, y):
     return x + y
 
-my_function('1', {} )
+my_function(1, 2, {} )
