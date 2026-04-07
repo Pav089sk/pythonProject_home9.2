@@ -1,6 +1,6 @@
 from functools import wraps
 
-def log(filename):
+def log(filename=None):
     """Декоратор для логирования функции"""
     def wrapper(func):
         @wraps(func)
@@ -9,24 +9,23 @@ def log(filename):
               result = func(*args, **kwargs)
               if filename is not None:
                   with open ('mylog.txt', 'a') as file:
-                      file.write(f'{func.__name__}, "ok"')
+                      file.write(f'{func.__name__}, "ok"\n')
               else:
                   print(f'{func.__name__}, "ok"')
               return result
             except TypeError as a:
                 if filename is not None:
                     with open('mylog.txt', 'a') as file:
-                        file.write(f'{func.__name__},"TypeError" {a}, Inputs: {args}, {kwargs}')
+                        file.write(f'{func.__name__},"TypeError" {a}, Inputs: {args}, {kwargs}\n')
                 else:
                     print(f'{func.__name__}, "TypeError" {a}, Inputs: {args}, {kwargs}')
-                raise a
+                # raise a
         return inner
     return wrapper
 
 
 
-@log(filename='mylog.txt')
+# @log()
 def my_function(x, y):
     return x + y
 
-my_function(1, 2)

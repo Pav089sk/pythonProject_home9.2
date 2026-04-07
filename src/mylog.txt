@@ -1,2 +1,0 @@
-my_function, "ok"
-my_function,"TypeError" my_function() takes 2 positional arguments but 3 were given, Inputs: (1, 2, {}), {}
