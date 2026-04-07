@@ -41,20 +41,13 @@ X — цифра номера карты. Генератор может сген
 Согласно Coverage report,проект покрыт тестами на 95%, для тестирования используется pytest. 
 Для запуска тестов выполните команду ```pytest``` через терминал в корневой папке проекта.
 ### Итоги тестирования после добавления новых функций в модуль processing.py
-File	function	 	statements	missing	excluded	 	coverage
-src / generators.py	transaction_descriptions	 	8	3	0	 	62%
-src / __init__.py	(no function)	 	0	0	0	 	100%
-src / generators.py	filter_by_currency	 	7	0	0	 	100%
-src / generators.py	card_number_generator	 	3	0	0	 	100%
-src / generators.py	(no function)	 	4	0	0	 	100%
-src / masks.py	get_mask_card_number	 	5	0	0	 	100%
-src / masks.py	get_mask_account	 	5	0	0	 	100%
-src / masks.py	(no function)	 	2	0	0	 	100%
-src / processing.py	filter_by_state	 	5	0	0	 	100%
-src / processing.py	sort_by_date	 	4	0	0	 	100%
-src / processing.py	(no function)	 	2	0	0	 	100%
-src / widget.py	mask_account_card	 	9	0	0	 	100%
-src / widget.py	get_date	 	3	0	0	 	100%
-src / widget.py	(no function)	 	3	0	0	 	100%
-Total	 	 	60	3	0	 	95%
-coverage.py v7.13.5, created at 2026-04-01 16:57 +0300
+Выгружеены в файл log
+## Добавлен модуль Decorators
+В модуле Decorators добавлен декоратор ```log```, который автоматически логирует начало и конец выполнения функции, а также ее результаты или возникшие ошибки.
+Декоратор должен принимет необязательный аргумент ```filename```, который определяет, куда будут записываться логи (в файл или в консоль):
+Если ```filename``` задан, логи записываются в указанный файл.
+Если ```filename```не задан, логи выводятся в консоль.
+Логирование включает в себя:
+1. Имя функции и результат выполнения при успешной операции.
+2. Имя функции, тип возникшей ошибки и входные параметры, если выполнение функции привело к ошибке.
+Для запуска тестирования через pytest необходиом авоспользоваться командой ```pytest``` в терминале
