@@ -4,11 +4,10 @@ def get_mask_card_number(card_num: int) -> str:
     и возвращает маску номера по заданному правилу
     """
     card_num_str: str = str(card_num)
+    if len(card_num_str) > 16 or len(card_num_str) < 16:
+        return "Неверный номер карты"
     result: str = f"{card_num_str[:4]} {card_num_str[4:6]}** **** {card_num_str[12:]}"
     return result
-
-
-# print(get_mask_card_number(7000792289606361))
 
 
 def get_mask_account(invoice_num: int) -> str:
@@ -17,8 +16,7 @@ def get_mask_account(invoice_num: int) -> str:
     и возвращает маску номера по заданному правилу
     """
     invoice_num_str: str = str(invoice_num)
+    if len(invoice_num_str) > 20 or len(invoice_num_str) < 20:
+        return "Неверный номер счета"
     result: str = f"**{invoice_num_str[-4:]}"
     return result
-
-
-# print(get_mask_account(73654108430135874305))
