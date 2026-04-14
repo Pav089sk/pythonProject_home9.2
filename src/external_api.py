@@ -8,7 +8,7 @@ for transact in transactions_list:
     def transaction_amount(operation: tuple) -> float:
       if transact['operationAmount']['currency']['code'] == 'RUB':
         return transact['operationAmount']['amount']
-      else:
+      elif transact['operationAmount']['currency']['code'] != 'RUB':
         return transact['operationAmount']['amount']
 
     print(transaction_amount(transact))
