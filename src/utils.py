@@ -1,3 +1,4 @@
+from external_api import transaction_amount
 import json
 
 def transaction_data(path: str) -> list:
@@ -12,6 +13,8 @@ def transaction_data(path: str) -> list:
     except json.JSONDecodeError:
         return []
 
-transactions_list = transaction_data('../data/operations.json')
 
-
+def currency_choise(transactions_list):
+    for operation in transactions_list:
+        if operation["operationAmount"]["currency"]["code"] != "RUB":
+            a = transaction_amount(operation)
