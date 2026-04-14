@@ -1,7 +1,4 @@
 import json
-from json import JSONDecodeError
-
-json_path = '../data/operations.json'
 
 def transaction_data(path: str) -> list:
     """Функция принимает путь к JSON файлу и выводит его содержимое"""
@@ -12,9 +9,9 @@ def transaction_data(path: str) -> list:
                return operations
     except FileNotFoundError:
        return []
-    except JSONDecodeError:
+    except json.JSONDecodeError:
         return []
 
+transactions_list = transaction_data('../data/operations.json')
 
-print(transaction_data(json_path))
 
