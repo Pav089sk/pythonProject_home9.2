@@ -1,6 +1,7 @@
-from unittest.mock import patch, mock_open
+from unittest.mock import Mock, patch, mock_open
 from src.utils import transaction_data
 import json
+
 
 @patch('json.load')
 def test_transaction_data(mock_data):
@@ -36,4 +37,3 @@ def test_invalid_json():
             result = transaction_data('invalid.json')
         assert result == []
     invalid_json.assert_called_once_with('invalid.json')
-

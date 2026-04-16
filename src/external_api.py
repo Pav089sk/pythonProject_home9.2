@@ -23,7 +23,7 @@ def transaction_amount(operation):
     result = response.text
     return response.json().get('result')
 
-# # if __name__ == '__main__':
+# if __name__ == '__main__':
 #     print(transaction_amount(
 #         {
 #             "id": 41428829,
