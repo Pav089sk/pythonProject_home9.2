@@ -15,6 +15,8 @@ def transaction_data(path: str) -> list:
 
 
 def currency_choise(transactions_list):
+    """Функция получает транзакцию из списка транзакций
+     валюта которой не рубли"""
     for operation in transactions_list:
         if operation["operationAmount"]["currency"]["code"] != "RUB":
             a = transaction_amount(operation)
