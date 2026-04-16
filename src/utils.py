@@ -1,4 +1,4 @@
-from external_api import transaction_amount
+from src.external_api import transaction_amount
 import json
 
 def transaction_data(path: str) -> list:
@@ -8,6 +8,8 @@ def transaction_data(path: str) -> list:
            operations = json.load(f)
            if isinstance(operations, list):
                return operations
+           else:
+               return []
     except FileNotFoundError:
        return []
     except json.JSONDecodeError:
