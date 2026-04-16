@@ -1,17 +1,17 @@
-from src.external_api import transaction_amount
 import json
+
 
 def transaction_data(path: str) -> list:
     """Функция принимает путь к JSON файлу и выводит его содержимое"""
     try:
-       with open(path) as f:
-           operations = json.load(f)
-           if isinstance(operations, list):
-               return operations
-           else:
-               return []
+        with open(path) as f:
+            operations = json.load(f)
+            if isinstance(operations, list):
+                return operations
+            else:
+                return []
     except FileNotFoundError:
-       return []
+        return []
     except json.JSONDecodeError:
         return []
 

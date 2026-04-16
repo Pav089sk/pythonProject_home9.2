@@ -1,10 +1,12 @@
 import os
+
 import requests
 from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY =  os.getenv('API_KEY')
+API_KEY = os.getenv("API_KEY")
+
 
 def transaction_amount(operation):
     """Функция для конвертации суммы транзакции в транзакцию в рублях"""
@@ -13,15 +15,14 @@ def transaction_amount(operation):
     url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={fr}&amount={am}"
 
     payload = {}
-    headers = {
-        "apikey": API_KEY
-    }
+    headers = {"apikey": API_KEY}
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
     status_code = response.status_code
     result = response.text
-    return response.json().get('result')
+    return response.json().get("result")
+
 
 # if __name__ == '__main__':
 #     print(transaction_amount(
