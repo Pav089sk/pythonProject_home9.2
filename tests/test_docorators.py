@@ -1,4 +1,3 @@
-import pytest
 from _pytest.capture import CaptureFixture
 
 from src.decorators import log, my_function
