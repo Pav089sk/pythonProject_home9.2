@@ -5,14 +5,14 @@ import pandas as pd
 def csv_read(path_csv: str) -> list:
     """Функция принимает путь до csv файла
     и возвращает список словарей из строк файла """
-    with open(path_csv) as file:
+    with open(path_csv, 'r', encoding='utf-8') as file:
         reader = csv.DictReader(file, delimiter=';')
         trans_list_csv = []
         for row in reader:
             trans_list_csv.append(row)
     return trans_list_csv
 
-# print(csv_read('../data/transactions.csv'))
+print(csv_read('../data/transactions.csv'))
 
 def excel_read(path_excel: str) -> list:
     """Функция принимает путь до excel файла
