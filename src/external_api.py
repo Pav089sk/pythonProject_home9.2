@@ -21,7 +21,7 @@ def transaction_amount(operation):
 
     status_code = response.status_code
     result = response.text
-    return float(response.json().get("result"))
+    return response.json().get("result")
 
 
 if __name__ == "__main__":
