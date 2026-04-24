@@ -12,7 +12,8 @@ def csv_read(path_csv: str) -> list:
             trans_list_csv.append(row)
     return trans_list_csv
 
-print(csv_read('../data/transactions.csv'))
+# print(csv_read('../data/transactions.csv'))
+
 
 def excel_read(path_excel: str) -> list:
     """Функция принимает путь до excel файла
@@ -20,5 +21,5 @@ def excel_read(path_excel: str) -> list:
     excel_data = pd.read_excel(path_excel).to_dict('records')
     return excel_data
 
-
 # print(excel_read('../data/transactions_excel.xlsx'))
+

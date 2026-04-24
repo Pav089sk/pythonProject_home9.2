@@ -1,5 +1,5 @@
 from unittest.mock import mock_open, patch
-
+import pandas as pd
 from src.reader import csv_read, excel_read
 
 test_data = ('''id;currency_code;amount
@@ -32,3 +32,19 @@ def test_csv_read_empty_file(mock_file):
     result = csv_read('empty.csv')
     assert result == []
     mock_file.assert_called_once_with('empty.csv', 'r', encoding='utf-8')
+
+
+test_df = pd.DataFrame({
+    'id': ['001', '002', '003', '004', '005'],
+    'currency_code': ['RUR', 'USD', 'EUR', 'RUR', 'USD'],
+    'amount': [167865.71, 5466.65, 657.54, 56437.96, 768.94]
+})
+
+
+@patch('pandas.read_excel')
+def test_excel_read(mock):
+    mock.return_value = test_df
+    result = excel_read('path')
+    expected_result = test_df.to_dict('records')
+    assert result == expected_result
+    mock.assert_called_once()
