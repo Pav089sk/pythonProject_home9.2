@@ -1,6 +1,8 @@
 from unittest.mock import Mock, patch
 
-from src.external_api import API_KEY, transaction_amount
+from mypy.types import NoneType
+
+from src.external_api import transaction_amount
 
 
 @patch("requests.request")
