@@ -26,6 +26,6 @@ def process_bank_operations(data:list[dict], categories:list)->dict:
 
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
     # print(process_bank_search(transactions,"Перевод организации"))
-    print(process_bank_operations(transactions,["Перевод со счета на счет", "Перевод организации"]))
+    # print(process_bank_operations(transactions,["Перевод со счета на счет", "Перевод организации"]))

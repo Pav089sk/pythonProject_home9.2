@@ -2,6 +2,8 @@ from src.utils import transaction_data
 from src.reader import csv_read, excel_read
 from src.processing import filter_by_state, sort_by_date
 from src.generators import filter_by_currency
+from src.search import process_bank_search
+import json
 
 
 def main():
@@ -24,10 +26,10 @@ def main():
             file_type = "CSV"
             data = csv_read("data/transactions.csv")
             break
-
         elif user_choise == "3":
             file_type = "XLSX"
             data = excel_read("data/transactions_excel.xlsx")
+
             break
         print("Некорректный ввод/n")
     print(f"Для обработки выбран {file_type}-файл.")
@@ -72,11 +74,22 @@ def main():
         print("Выводить только рублевые транзакции? Да/Нет")
         user_currency_choiсe = input().lower()
         if user_currency_choiсe == 'да':
-            current_list = list(filter_by_currency(list(sorted_list),'RUB'))
+            current_list = list(filter_by_currency(sorted_list,'RUB'))
             break
         elif user_currency_choiсe == 'нет':
             current_list = sorted_list
 
+    # Фильтрация транзакций по определенному слову
+    while True:
+        print("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
+        user_choiсe = input().lower()
+        if user_choiсe == 'нет':
+          result = current_list
+        elif user_choiсe == 'да':
+            print('Введите искомое описание транзакции:')
+            search_string = input().lower()
+            result_list = process_bank_search(current_list, search_string)
+        break
 
 
 if __name__ == '__main__':
