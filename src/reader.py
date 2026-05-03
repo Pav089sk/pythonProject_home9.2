@@ -14,9 +14,6 @@ def csv_read(path_csv: str) -> list:
     return trans_list_csv
 
 
-# print(csv_read('../data/transactions.csv'))
-
-
 def excel_read(path_excel: str) -> list:
     """Функция принимает путь до excel файла
     и возвращает список словарей из строк файла"""
@@ -25,3 +22,4 @@ def excel_read(path_excel: str) -> list:
 
 
 # print(excel_read('../data/transactions_excel.xlsx'))
+# print(csv_read('../data/transactions.csv'))
