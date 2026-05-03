@@ -34,7 +34,7 @@ def transaction_data(path: str) -> list:
         return []
 
 
-print(transaction_data("../data/operation.json"))
+# print(transaction_data("../data/operation.json"))
 # def currency_choise(transactions_list):
 #     """Функция получает транзакцию из списка транзакций
 #      валюта которой не рубли"""

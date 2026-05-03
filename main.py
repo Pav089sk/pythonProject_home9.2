@@ -1,10 +1,9 @@
 from src.utils import transaction_data
 from src.reader import csv_read, excel_read
 from src.processing import filter_by_state, sort_by_date
-from src.generators import filter_by_currency
 from src.search import process_bank_search
-import json
-
+from src.filter import filter
+from src.widget import get_date, mask_account_card
 
 def main():
     """Функция основной логики работы приложения"""
@@ -20,7 +19,7 @@ def main():
 
         if user_choise == "1":
             file_type = "JSON"
-            data = transaction_data("data/operation.json")
+            data = transaction_data("data/operations.json")
             break
         elif user_choise == "2":
             file_type = "CSV"
@@ -74,23 +73,67 @@ def main():
         print("Выводить только рублевые транзакции? Да/Нет")
         user_currency_choiсe = input().lower()
         if user_currency_choiсe == 'да':
-            current_list = list(filter_by_currency(sorted_list,'RUB'))
+            current_list = filter(sorted_list,'RUB')
             break
         elif user_currency_choiсe == 'нет':
             current_list = sorted_list
+            break
 
     # Фильтрация транзакций по определенному слову
     while True:
         print("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
         user_choiсe = input().lower()
         if user_choiсe == 'нет':
-          result = current_list
+            result = current_list
         elif user_choiсe == 'да':
             print('Введите искомое описание транзакции:')
             search_string = input().lower()
-            result_list = process_bank_search(current_list, search_string)
+            result = process_bank_search(current_list, search_string)
         break
 
+    if result == []:
+        print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+    else:
+        print("Распечатываю итоговый список транзакций...")
+        print(f"Всего банковских операций в выборке: {len(result)}")
+        for item in result:
+            item_date = get_date(item.get("date"))
+            item_description = item.get("description")
+            print(item_date, item_description)
+            if item_description[:8] == "Открытие":
+                item_account = item.get("to")
+                print(item_account)
+            else:
+                item_from = mask_account_card(item.get("from"))
+                item_to = mask_account_card(item.get("to"))
+                print(f"{item_from} -> {item_to}")
+
+            if file_type == "JSON":
+                ammount = item["operationAmount"]["amount"]
+                сurrency = item["operationAmount"]["currency"]["name"]
+                print(f"Сумма: {ammount} {сurrency}")
+            else:
+                ammount = item.get("amount")
+                сurrency = item.get("currency_name", 0)
+                print(f"Сумма: {ammount} {сurrency}")
+            print("")
+
+    # return result
+
+# result = main()
+# def filter_info(res: list[dict])  -> str:
+#     for i in res:
+#         new_data = i["date"]
+#         type_description = i["description"]
+#         transact_from = i["from"]
+#         where = i["to"]
+#         summury = i['amount']
+#         name = i['name']
+#     return new_data, type_description,  transact_from, where, summury, name
 
 if __name__ == '__main__':
     main()
+
+    # print("Распечатываю итоговый список транзакций...")
+    # print(f"Всего банковских операций в выборке: {len(result)}")
+
