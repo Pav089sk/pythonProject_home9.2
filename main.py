@@ -92,6 +92,7 @@ def main():
             result = process_bank_search(current_list, search_string)
         break
 
+
     if result == []:
         print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
     else:
