@@ -1,5 +1,6 @@
-from src.masks import get_mask_account, get_mask_card_number
 from datetime import datetime
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(card_or_invoice_num: str) -> str:
@@ -26,5 +27,5 @@ def get_date(date_string: str) -> str:
     """
     функция форматирования типа строки даты
     """
-    new_data = datetime.fromisoformat(date_string).strftime('%d.%m.%Y')
+    new_data = datetime.fromisoformat(date_string).strftime("%d.%m.%Y")
     return new_data

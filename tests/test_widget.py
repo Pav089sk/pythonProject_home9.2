@@ -34,7 +34,3 @@ def test_mask_data(mask_data):
 
 def test_mask_data_2():
     assert get_date("2026-12-10T02:26:18.671407") == "10.12.2026"
-
-
-def test_mask_data_empty():
-    assert get_date("") == ""

@@ -1,7 +1,5 @@
 from unittest.mock import Mock, patch
 
-from mypy.types import NoneType
-
 from src.external_api import transaction_amount
 
 

@@ -1,14 +1,15 @@
-from src.utils import transaction_data
-from src.reader import csv_read, excel_read
-from src.processing import filter_by_state, sort_by_date
-from src.search import process_bank_search
 from src.filter import filter
+from src.processing import filter_by_state, sort_by_date
+from src.reader import csv_read, excel_read
+from src.search import process_bank_search
+from src.utils import transaction_data
 from src.widget import get_date, mask_account_card
+
 
 def main():
     """Функция основной логики работы приложения"""
     while True:
-    #Модуль приветствия и выбора типа входных данных"""
+        # Модуль приветствия и выбора типа входных данных"""
         print("Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
         print("Выберите необходимый пункт меню:")
         print("1. Получить информацию о транзакциях из JSON-файла")
@@ -34,7 +35,7 @@ def main():
     print(f"Для обработки выбран {file_type}-файл.")
 
     while True:
-    # Модуль фильтрации по статусу операции
+        # Модуль фильтрации по статусу операции
         print("Введите статус, по которому необходимо выполнить фильтрацию.")
         print("Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING")
         status = input("Пользователь: ").upper()
@@ -46,12 +47,12 @@ def main():
 
     # Модуль сортировки и необходимости сортировки по дате
     while True:
-        print('Отсортировать операции по дате? Да/Нет')
+        print("Отсортировать операции по дате? Да/Нет")
         sort_status = input().lower()
-        if sort_status == 'нет':
+        if sort_status == "нет":
             sort_status = False
             break
-        elif sort_status == 'да':
+        elif sort_status == "да":
             sort_status = True
             break
     while True:
@@ -59,12 +60,12 @@ def main():
             sorted_list = choose_data
             break
         else:
-            print('Отсортировать по возрастанию или по убыванию?')
+            print("Отсортировать по возрастанию или по убыванию?")
             sort_direction = input().lower()
-            if sort_direction == 'по возрастанию':
+            if sort_direction == "по возрастанию":
                 sorted_list = sort_by_date(choose_data, False)
                 break
-            elif sort_direction == 'по убыванию':
+            elif sort_direction == "по убыванию":
                 sorted_list = sort_by_date(choose_data)
                 break
 
@@ -72,10 +73,10 @@ def main():
     while True:
         print("Выводить только рублевые транзакции? Да/Нет")
         user_currency_choiсe = input().lower()
-        if user_currency_choiсe == 'да':
-            current_list = filter(sorted_list,'RUB')
+        if user_currency_choiсe == "да":
+            current_list = filter(sorted_list, "RUB")
             break
-        elif user_currency_choiсe == 'нет':
+        elif user_currency_choiсe == "нет":
             current_list = sorted_list
             break
 
@@ -83,10 +84,10 @@ def main():
     while True:
         print("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
         user_choiсe = input().lower()
-        if user_choiсe == 'нет':
+        if user_choiсe == "нет":
             result = current_list
-        elif user_choiсe == 'да':
-            print('Введите искомое описание транзакции:')
+        elif user_choiсe == "да":
+            print("Введите искомое описание транзакции:")
             search_string = input().lower()
             result = process_bank_search(current_list, search_string)
         break
@@ -109,31 +110,15 @@ def main():
                 print(f"{item_from} -> {item_to}")
 
             if file_type == "JSON":
-                ammount = item["operationAmount"]["amount"]
+                amount = item["operationAmount"]["amount"]
                 сurrency = item["operationAmount"]["currency"]["name"]
-                print(f"Сумма: {ammount} {сurrency}")
+                print(f"Сумма: {amount} {сurrency}")
             else:
-                ammount = item.get("amount")
+                amount = item.get("amount")
                 сurrency = item.get("currency_name", 0)
-                print(f"Сумма: {ammount} {сurrency}")
+                print(f"Сумма: {amount} {сurrency}")
             print("")
 
-    # return result
 
-# result = main()
-# def filter_info(res: list[dict])  -> str:
-#     for i in res:
-#         new_data = i["date"]
-#         type_description = i["description"]
-#         transact_from = i["from"]
-#         where = i["to"]
-#         summury = i['amount']
-#         name = i['name']
-#     return new_data, type_description,  transact_from, where, summury, name
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
-    # print("Распечатываю итоговый список транзакций...")
-    # print(f"Всего банковских операций в выборке: {len(result)}")
-

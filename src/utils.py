@@ -2,7 +2,6 @@ import json
 import logging
 import os
 
-
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
 current_dir = os.path.dirname(os.path.abspath(__file__))
