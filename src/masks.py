@@ -1,7 +1,6 @@
 import logging
 import os
 
-
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
 current_dir = os.path.dirname(os.path.abspath(__file__))

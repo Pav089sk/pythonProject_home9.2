@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -25,7 +27,5 @@ def get_date(date_string: str) -> str:
     """
     функция форматирования типа строки даты
     """
-    if len(date_string) < 8:
-        return ""
-
-    return f"{date_string[8:10]}.{date_string[5:7]}.{date_string[:4]}"
+    new_data = datetime.fromisoformat(date_string).strftime("%d.%m.%Y")
+    return new_data

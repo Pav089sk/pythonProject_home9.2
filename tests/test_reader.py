@@ -52,6 +52,7 @@ expected_list = [
     {"id": "005", "currency_code": "USD", "amount": 768.94},
 ]
 
+
 @patch("pandas.read_excel")
 def test_excel_read(mock):
     mock.return_value = test_df

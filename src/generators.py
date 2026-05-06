@@ -43,6 +43,7 @@ def filter_by_currency(transactions: list[dict], currency: str) -> list[dict]:
 
 
 def transaction_descriptions(transactions: list[dict]) -> str:
+    """Функция-генератор проверки нестандартного типа транзакций"""
     for transaction in transactions:
         if not transaction:
             yield "Отсутствует транзакция"  # проверка пустой транзакции

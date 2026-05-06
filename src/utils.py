@@ -2,7 +2,6 @@ import json
 import logging
 import os
 
-
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -34,7 +33,7 @@ def transaction_data(path: str) -> list:
         return []
 
 
-print(transaction_data("../data/operation.json"))
+# print(transaction_data("../data/operation.json"))
 # def currency_choise(transactions_list):
 #     """Функция получает транзакцию из списка транзакций
 #      валюта которой не рубли"""
